@@ -1,0 +1,12 @@
+#!/bin/bash -l
+#PBS -N CG
+#PBS -l nodes=2:ppn=32
+#PBS -q siwir
+#PBS -l walltime=0:20:00
+#PBS -M aishvarya.k.jain@fau.de -m abe
+#PBS -o $PBS_JOBNAME.out -e $PBS_JOBNAME.err
+
+cd $PBS_O_WORKDIR 
+make clean
+make
+mpirun -np 64 ./cg 10000 10000 100 -1
